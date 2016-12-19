@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<link rel="stylesheet" href="css/mui.min.css">
+		<style type="text/css">
+			.mui-ios .mui-table-view-cell{
+				width: 3.66rem;
+    			height: 4rem;
+   				background: #fff;
+    			float: left;
+   				margin-left: 3px;
+    			margin-top: 0.5rem;
+   				position: relative;
+   				overflow: visible; 
+   				text-align: center;
+			}
+			.mui-scroll {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    width: 100%;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+}
+			.mui-table-view-cell>a:not(.mui-btn) {
+   	 			position: relative;
+    			display: block;
+    			overflow: hidden;
+    			margin: 0; 
+    			white-space: nowrap;
+    			text-overflow: ellipsis;
+    			color: inherit;
+}
+			.mui-ios .mui-navigate-right{
+				display: block;
+    			width: 0.6rem;
+    			height: 0.6rem;
+    			border-radius: 50%;
+    			background: #00FFFF;
+    			position: absolute;
+    			bottom: -3.88rem;
+    			left: 0.2rem;
+    			z-index: 1;
+			}
+			.mui-table-view-cell>a:not(.mui-btn) {
+    			position: relative;
+    			display: block;
+    			overflow: inherit;
+    			margin: -20px -15px;
+    			padding: 0; 
+    			white-space: nowrap;
+    			text-overflow: ellipsis;
+    			color: inherit;
+			}
+			.mui-navigate-right:after, .mui-push-right:after {
+				top: -0.4rem;
+    			right: -2.8rem;
+    			content: '\e583';
+			}
+			.mui-navigate-right:after, .mui-push-left:after, .mui-push-right:after {
+   				font-family: Muiicons;
+    			font-size: inherit;
+    			line-height: 1;
+    			position: absolute;
+    			top: 0.5rem;
+    			display: inline-block;
+    			-webkit-transform: translateY(-50%);
+   			    transform: translateY(-50%);
+    			text-decoration: none;
+    			color: #bbb;
+    			-webkit-font-smoothing: antialiased;
+			}
+			.mui-ios .box-img{
+    			width: 3.66rem;
+    			height: 4rem;
+    			overflow: hidden;
+    			display: block;
+			}
+			.mui-ios .box-img img{
+				width: 100%;
+			}
+			.mui-table-view-cell:after {
+    			position: absolute;
+    			right: 0;
+    			bottom: 0;
+    			left: 15px;
+    			height: 1px;
+    			content: '';
+    			-webkit-transform: scaleY(.5);
+    			transform: scaleY(.5);
+    			background-color: rgba(0,0,0,0);
+			}
+			.mui-navigate-right{
+				line-height: 0.6rem;
+			}
+			/*                                        */
+			.mui-bar-nav ul{
+	display: block;
+	width: 30px;
+	height:30px;
+	/*background: #ccc;*/
+	position: absolute;
+	top: 7px;
+}
+*{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.mui-bar-nav ul li{
+	width: 26px;
+	height: 1px;
+	background: #242424;
+	float: left;
+	margin-top: 5px;
+}
+.mui-bar-nav ul li:nth-child(1){
+	margin-top: 8px;
+}
+.mui-bar-nav .head-guan{
+	width: 200px;
+	height: 44px;
+	/*background: #CCCCCC;*/
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+}
+.mui-bar-nav .head-guan li{
+	display: block;
+	float: left;
+	margin-left: 15px;
+	width: 50px;
+	height: 44px;
+	background: rgba(0,0,0,0);
+}
+.mui-bar-nav .head-guan li a{
+	line-height: 36px;
+	color: #666;
+}
+.mui-bar-nav .head-guan li:nth-child(1){
+	margin-top: 5px;
+}
+.mui-bar .head-login{
+	display: block;
+	float: right;
+	margin-top: 7px;
+	color: #666;
+	width: 24px;
+	height: 36px;
+	line-height: 44px;
+	
+}
+.mui-bar .head-login img{
+	width: 100%;
+}
+		</style>
+	</head>
+	
+
+	<body>
+		<!--下拉刷新容器-->
+		<header class="mui-bar mui-bar-nav">
+		<a class="link">
+			<ul>
+				<li></li>
+				<li></li>
+				<li></li>
+			</ul>
+		</a>
+			<ul class="head-guan">
+				<li><a href="">关注</a></li>
+				<li><a href="">发现</a></li>
+				<li><a href="">同城</a></li>
+			</ul>
+    		<a href="login.html" class="head-login"><img src="images/主页 (1).png"/></a>
+		</header>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<!--数据列表-->
+				<ul class="mui-table-view mui-table-view-chevron">
+					 
+				</ul>
+			</div>
+		</div> 
+		<script src="js/mui.min.js"></script>
+		<script>
+		function resize(originSize,type){
+			var type=type||"x";
+			if(type=="x"){
+				var widths=document.documentElement.clientWidth;
+				var scale=widths/originSize*100+"px";
+
+			}else if(type=="y"){
+				var heights=document.documentElement.clientHeight;
+				var scale=heights/originSize*100+"px";
+			}
+			document.getElementsByTagName("html")[0].style.fontSize=scale;
+		}
+		window.onload=function(){
+			resize(750,"x");
+			var muibar=document.getElementsByClassName("mui-bar")[0]; 
+			
+		}
+		
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+				
+				
+			});
+			document.addEventListener("plusready",function(){
+					var link=document.getElementsByClassName("link")[0];
+					link.onclick=function(){
+						var obj=plus.webview.create("zhuye.html","");
+						obj.show("slide-in-right");
+					}
+				})
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				setTimeout(function() {
+					var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+					for (var i = cells.length, len = i + 3; i < len; i++) {
+						var li = document.createElement('li');
+						li.className = 'mui-table-view-cell';
+						li.innerHTML = "<a class='mui-navigate-right'>I" + (i + 1) + "</a><a href='tab-webview-main.html' class='box-img'><img src='images/img/"+(i + 1) +".jpg' alt='' /></a>";
+						//下拉刷新，新纪录插到最前面；
+						table.insertBefore(li, table.firstChild);
+					}
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+				}, 1500);
+			}
+			var count = 0;
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				setTimeout(function() {
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh((++count > 2)); //参数为true代表没有更多数据了。
+					var table = document.body.querySelector('.mui-table-view');
+					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+					for (var i = cells.length, len = i + 20; i < len; i++) {
+						var li = document.createElement('li');
+						li.className = 'mui-table-view-cell';
+						li.innerHTML = "<a class='mui-navigate-right'>I" + (i + 1) + "</a><a href='tab-webview-main.html' class='box-img'><img src='images/img/"+(i + 1) +".jpg' alt='' /></a>";
+						table.appendChild(li);    
+					}
+				}, 1500);
+			}
+			if (mui.os.plus) {
+				mui.plusReady(function() {
+					setTimeout(function() {
+						mui('#pullrefresh').pullRefresh().pullupLoading();
+					}, 1000);
+
+				});
+			} else {
+				mui.ready(function() {
+					mui('#pullrefresh').pullRefresh().pullupLoading();
+				});
+			}
+			
+			
+			
+		</script>
+	</body>
+
+</html>
