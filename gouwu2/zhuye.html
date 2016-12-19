@@ -254,5 +254,12 @@
 			var muibar=document.getElementsByClassName("mui-bar")[0]; 
 			
 		}
+		document.addEventListener("plusready",function(){
+					var link=document.getElementsByClassName("link")[0];
+					link.onclick=function(){
+						var obj=plus.webview.create("pullrefresh_main.html","");
+						obj.show("slide-in-right");
+					}
+				})
 	</script>
 </html>

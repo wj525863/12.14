@@ -76,11 +76,13 @@
 
 	<body>
 		<header class="mui-bar mui-bar-nav">
+			<a class="link">
 			<ul>
 				<li></li>
 				<li></li>
 				<li></li>
 			</ul>
+			</a>
 			<ul class="head-guan">
 				<li><a href="">关注</a></li>
 				<li><a href="">发现</a></li>
@@ -114,6 +116,14 @@
 			}
 			contentWebview.evalJS("mui('#pullrefresh').pullRefresh().scrollTo(0,0,100)");
 		});
+		
+		document.addEventListener("plusready",function(){
+					var link=document.getElementsByClassName("link")[0];
+					link.onclick=function(){
+						var obj=plus.webview.create("zhuye.html","");
+						obj.show("slide-in-right");
+					}
+				})
 	</script>
 
 </html>
